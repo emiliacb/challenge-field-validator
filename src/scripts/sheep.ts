@@ -12,7 +12,9 @@ class SheepScript implements Script {
     return Promise.resolve("baa");
   }
 
-  async run(input: string): Promise<string> {
+  async run(getInput?: () => Promise<string>): Promise<string> {
+    const input = getInput ? await getInput() : await this.getDefaultInput();
+
     log("Running sheep script");
     log(
       `Sheep says: ${

@@ -1,6 +1,29 @@
+/**
+ * Interface representing a runnable script with standardized input/output handling.
+ * Scripts can be executed individually or composed together through piping operations.
+ */
 export interface Script {
+  /** Descriptive name of the script */
   name: string;
+
+  /** Detailed description of what the script does */
   description: string;
-  getDefaultInput: () => Promise<string>;
-  run: (input: string) => Promise<string>;
+
+  /**
+   * Provides a default source of input as an async generator.
+   * Using generators allows for efficient streaming of data between scripts,
+   * enabling composable pipelines where output from one script can be piped
+   * as input to another without loading everything into memory.
+   */
+  getDefaultInput: () => AsyncGenerator<string, void, unknown>;
+
+  /**
+   * Executes the script's logic and returns a promise with the result.
+   * @param getInput Optional input generator that overrides the default input.
+   * When scripts are piped together, this parameter receives the output generator
+   * from the previous script in the pipeline.
+   */
+  run: (
+    getInput?: () => AsyncGenerator<string, void, unknown>
+  ) => Promise<string>;
 }

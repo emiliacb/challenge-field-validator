@@ -1,13 +1,11 @@
-import { getInput, output, outputError } from "../cli/index.ts";
+import { getUserInput, output, outputError } from "../cli/index.ts";
 import { getScript } from "../scripts/index.ts";
 
 async function runScript() {
   try {
-    const { scriptName } = await getInput();
+    const { scriptName } = await getUserInput();
     const script = getScript(scriptName);
-
-    const data = await script.getDefaultInput();
-    const result = await script.run(data);
+    const result = await script.run();
 
     return output(result);
   } catch (error) {

@@ -1,11 +1,38 @@
-import { outputError } from "../../cli/output.ts";
+import { log, outputError } from "../../cli/output.ts";
 
-const script = async (input: string) => {
+const script = async (
+  getInputs: () => AsyncGenerator<string, void, unknown>
+) => {
   try {
-    // The input parameter now contains the data from geti-inputs.ts
-    // We just need to format it as JSON
-    const data = JSON.parse(input);
-    return JSON.stringify(data, null, 2);
+    const iterator = getInputs();
+    const stack: string[] = [];
+
+    for await (const value of iterator) {
+      stack.push(value);
+    }
+
+    const allTasks: any[] = [];
+
+    for (const pageStr of stack) {
+      const pageData = JSON.parse(pageStr);
+
+      if (pageData.docs && Array.isArray(pageData.docs)) {
+        log(pageData);
+
+        const pageTasks = pageData.docs.map((task: any) => ({
+          id: task.id,
+          name: task.task_id || task.id,
+        }));
+
+        allTasks.push(...pageTasks);
+      }
+    }
+
+    if (allTasks.length === 0) {
+      throw new Error("No tasks found in the API response");
+    }
+
+    return JSON.stringify(allTasks, null, 2);
   } catch (error) {
     error.step = "traffic-lights:script";
     outputError(error);

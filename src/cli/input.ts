@@ -8,7 +8,7 @@ import { SCRIPT_LIST } from "../scripts/index.ts";
 const prompt = createPromptModule({ output: stderr });
 
 // TODO - Handle stdin file reading
-const getInput = async () => {
+const getUserInput = async () => {
   program.option("-s, --script <type>", "Script to run");
   program.parse();
 
@@ -34,4 +34,4 @@ const getInput = async () => {
   return { scriptName };
 };
 
-export { getInput };
+export { getUserInput };
