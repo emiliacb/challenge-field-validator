@@ -1,4 +1,4 @@
 import { getInput } from "./input.ts";
-import { output } from "./output.ts";
+import { output, outputError } from "./output.ts";
 
-export { getInput, output };
+export { getInput, output, outputError };
