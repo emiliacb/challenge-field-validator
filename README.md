@@ -27,3 +27,9 @@ Run the cli with a specific script
 ```bash
 pnpm start -s <script-name>
 ```
+
+Run the cli and pipe the output to a file while running the script
+
+```bash
+pnpm start | tee output.txt
+```
