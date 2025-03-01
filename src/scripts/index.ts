@@ -1,18 +1,27 @@
-import { Script } from "../lib/interfaces/script.js";
-import trafficLights from "./traffic_lights.js";
+import { outputError } from "../cli/output.ts";
+import { Script } from "../lib/interfaces/script.ts";
+
+import sheep from "./sheep.ts";
+import trafficLights from "./traffic-lights/index.ts";
 
 const SCRIPT_LIST: Record<string, Script> = {
+  sheep,
   trafficLights,
 } as const;
 
 const getScript = (name: string) => {
-  const script = SCRIPT_LIST[name];
+  try {
+    const script = SCRIPT_LIST[name];
 
-  if (!script) {
-    throw new Error(`Script ${name} not found`);
+    if (!script) {
+      throw new Error(`Script ${name} not found`);
+    }
+
+    return script;
+  } catch (error) {
+    error.step = "getScript";
+    outputError(error);
   }
-
-  return script;
 };
 
 export { SCRIPT_LIST, getScript };
