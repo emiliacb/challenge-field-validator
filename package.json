@@ -1,0 +1,24 @@
+{
+  "name": "challenge-field-validator",
+  "version": "1.0.0",
+  "description": "CLI tool for field validation",
+  "main": "bin/index.js",
+  "type": "module",
+  "bin": {
+    "field-validator": "./bin/index.js"
+  },
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc --outDir bin",
+    "start": "node bin/index.js"
+  },
+  "author": "Emilia Cabral",
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "tsx": "^4.19.3",
+    "typescript": "5.7.2"
+  },
+  "dependencies": {
+    "commander": "^13.1.0"
+  }
+}
