@@ -1,7 +1,7 @@
 import { stdout, stderr } from "node:process";
 
 import chalk from "chalk";
-
+import { ErrorWithStep } from "../lib/interfaces/error.ts";
 /**
  * This module uses process.stdout and process.stderr streams directly instead of console.log
  * to ensure proper handling of Unix-style pipes and redirections. This approach allows:
@@ -39,9 +39,12 @@ const log = (message: string) => {
  * Error reporting for user-facing issues. Writes to stderr in red.
  * @param message - Error description with potential recovery instructions
  */
-const outputError = (message: string) => {
+const outputError = (error: ErrorWithStep) => {
   const timestamp = new Date().toTimeString().split(" ")[0];
-  writeStream(stderr, chalk.red(`[ERROR - ${timestamp}] ${message}`));
+  writeStream(
+    stderr,
+    chalk.red(`[ERROR - ${timestamp}] ${error.step}: ${error.message}`)
+  );
 };
 
 export { output, outputError, log };
