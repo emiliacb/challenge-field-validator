@@ -23,7 +23,7 @@ const getUserInput = async () => {
         name: "script",
         message: "Select a script to run:",
         choices: Object.keys(SCRIPT_LIST).map((key) => ({
-          name: `${key} - ${SCRIPT_LIST[key].description}`,
+          name: `${SCRIPT_LIST[key].name} - ${SCRIPT_LIST[key].description}`,
           value: key,
         })),
       },

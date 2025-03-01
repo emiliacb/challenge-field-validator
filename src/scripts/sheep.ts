@@ -3,17 +3,24 @@ import { Script } from "../lib/interfaces/script.js";
 
 // Just a silly script to test the CLI.
 // Sheep created by Bob Allison retrieved from https://ascii.co.uk/
-
 class SheepScript implements Script {
-  name: string = "sheep";
-  description: string = "Displays an ASCII sheep";
-
-  getDefaultInput(): Promise<string> {
-    return Promise.resolve("baa");
+  name: string = "sheep??";
+  description: string = "Just a silly script to test the CLI.";
+  getDefaultInput(): AsyncGenerator<string, void, unknown> {
+    return (async function* () {
+      yield "baa";
+    })();
   }
 
-  async run(getInput?: () => Promise<string>): Promise<string> {
-    const input = getInput ? await getInput() : await this.getDefaultInput();
+  async run(
+    getInput?: () => AsyncGenerator<string, void, unknown>
+  ): Promise<string> {
+    const inputGenerator = getInput || this.getDefaultInput.bind(this);
+    let input = "";
+
+    for await (const chunk of inputGenerator()) {
+      input += chunk;
+    }
 
     log("Running sheep script");
     log(
