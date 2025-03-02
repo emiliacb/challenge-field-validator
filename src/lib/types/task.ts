@@ -1,3 +1,5 @@
+// RawTask represents the task object from the Scale API.
+// TODO - Validate this and add the missing fields. I just used Cursor with the API reference to generate this, is enough for now but in a real project we should validate this.
 export type RawTask = {
   task_id: string;
   created_at: string;
