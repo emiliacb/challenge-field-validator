@@ -4,7 +4,8 @@ A command-line interface tool for validating annotations in built for the field 
 
 ## Documentation
 
-- [Getting Started](./docs/GETTING_STARTED.md)
+- [Getting Started](./docs/getting-started.md)
+- [API reference](./docs/api-reference.md)
 - [Goals and Next Steps](./docs/goals-and-next-steps.md)
 - [Contributing](./docs/CONTRIBUTING.md)
 - [Challenge](./docs/CHALLENGE.md)
