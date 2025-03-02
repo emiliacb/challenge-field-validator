@@ -1,4 +1,4 @@
-import { getUserInput, output, outputError } from "../cli/index.ts";
+import { getUserInput, output, outputError } from "../lib/cli/index.ts";
 import { getScript } from "../scripts/index.ts";
 
 async function runScript() {

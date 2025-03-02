@@ -1,4 +1,4 @@
-import { log, outputError } from "../../cli/output.ts";
+import { log, outputError } from "../../lib/cli/output.ts";
 
 const runVerification = async (
   getInputs: () => AsyncGenerator<string, void, unknown>

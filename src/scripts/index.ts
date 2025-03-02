@@ -1,4 +1,4 @@
-import { outputError } from "../cli/output.ts";
+import { outputError } from "../lib/cli/output.ts";
 import { Script } from "../lib/interfaces/script.ts";
 
 // We use dynamic imports for lazy loading to avoid bundling all scripts

@@ -1,7 +1,7 @@
 import { stdout, stderr } from "node:process";
 
 import chalk from "chalk";
-import { ErrorWithStep } from "../lib/interfaces/error.ts";
+import { ErrorWithStep } from "../interfaces/error.ts";
 /**
  * This module uses process.stdout and process.stderr streams directly instead of console.log
  * to ensure proper handling of Unix-style pipes and redirections. This approach allows:

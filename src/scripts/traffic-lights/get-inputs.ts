@@ -1,6 +1,5 @@
-import { log, outputError } from "../../cli/output.ts";
+import { log, outputError } from "../../lib/cli/output.ts";
 
-// Generator for live API data
 async function* getInputsGenerator() {
   try {
     let nextCursor = null;
@@ -48,8 +47,6 @@ async function fetchPage(cursor = null) {
     }
 
     log(`Fetching from: ${URL}?${queryParams}`);
-
-    throw new Error("test");
 
     const response = await fetch(`${URL}?${queryParams}`, {
       method: "GET",
