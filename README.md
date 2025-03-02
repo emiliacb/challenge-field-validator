@@ -1,6 +1,6 @@
 # Field Validator CLI
 
-A command-line interface tool for validating annotations in built for the field engineering team.
+A command-line interface tool was built for validating annotations for the field engineering team
 
 ![Field Validator CLI Screenshot](./docs/screenshot.png)
 
