@@ -1,6 +1,6 @@
 import { log, outputError } from "../../cli/output.ts";
 
-const script = async (
+const runVerification = async (
   getInputs: () => AsyncGenerator<string, void, unknown>
 ) => {
   try {
@@ -36,7 +36,8 @@ const script = async (
   } catch (error) {
     error.step = "traffic-lights:script";
     outputError(error);
+    throw error;
   }
 };
 
-export { script };
+export { runVerification };

@@ -4,13 +4,14 @@ import { getScript } from "../scripts/index.ts";
 async function runScript() {
   try {
     const { scriptName } = await getUserInput();
-    const script = getScript(scriptName);
+    const script = await getScript(scriptName);
     const result = await script.run();
 
     return output(result);
   } catch (error) {
     error.step = "runScript";
-    return outputError(error);
+    outputError(error);
+    throw error;
   }
 }
 

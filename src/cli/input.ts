@@ -17,13 +17,21 @@ const getUserInput = async () => {
   let scriptName = option.script;
 
   if (!scriptName) {
+    // Load all scripts to access their name and description
+    const loadedScripts = await Promise.all(
+      Object.entries(SCRIPT_LIST).map(async ([key, loader]) => {
+        const script = await loader();
+        return { key, script };
+      })
+    );
+
     const answer = await prompt([
       {
         type: "list",
         name: "script",
         message: "Select a script to run:",
-        choices: Object.keys(SCRIPT_LIST).map((key) => ({
-          name: `${SCRIPT_LIST[key].name} - ${SCRIPT_LIST[key].description}`,
+        choices: loadedScripts.map(({ key, script }) => ({
+          name: `${script.name} - ${script.description}`,
           value: key,
         })),
       },

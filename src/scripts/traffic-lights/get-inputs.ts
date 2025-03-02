@@ -22,6 +22,7 @@ async function* getInputsGenerator() {
   } catch (error) {
     error.step = "traffic-lights:getInputsGenerator";
     outputError(error);
+    throw error;
   }
 }
 
@@ -48,6 +49,8 @@ async function fetchPage(cursor = null) {
 
     log(`Fetching from: ${URL}?${queryParams}`);
 
+    throw new Error("test");
+
     const response = await fetch(`${URL}?${queryParams}`, {
       method: "GET",
       headers,
@@ -65,6 +68,7 @@ async function fetchPage(cursor = null) {
   } catch (error) {
     error.step = "traffic-lights:fetchPage";
     outputError(error);
+    throw error;
   }
 }
 

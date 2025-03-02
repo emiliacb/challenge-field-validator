@@ -1,5 +1,5 @@
 import { Script } from "../../lib/interfaces/script.ts";
-import { script } from "./script.ts";
+import { runVerification } from "./run-verification.ts";
 import { getInputsGenerator } from "./get-inputs.ts";
 
 class TrafficLightsScript implements Script {
@@ -19,7 +19,7 @@ class TrafficLightsScript implements Script {
 
   async run(getInputs: () => AsyncGenerator<string, void, unknown>) {
     const inputGenerator = getInputs || this.getDefaultInput.bind(this);
-    return script(inputGenerator);
+    return runVerification(inputGenerator);
   }
 }
 

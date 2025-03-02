@@ -9,7 +9,7 @@ async function main() {
     await runScript();
   } catch (error) {
     error.step = "main";
-    return outputError(error);
+    outputError(error);
   }
 }
 
