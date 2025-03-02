@@ -1,4 +1,4 @@
-type Task = {
+export type RawTask = {
   task_id: string;
   created_at: string;
   completed_at?: string;
@@ -62,5 +62,3 @@ type Task = {
   work_started?: boolean;
   isProcessed?: boolean;
 };
-
-export default Task;

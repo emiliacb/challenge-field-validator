@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 
-import { outputError } from "./cli/output.js";
+import { log } from "./cli/output.js";
 import { runScript } from "./core/index.js";
 
 async function main() {
@@ -9,7 +9,7 @@ async function main() {
     await runScript();
   } catch (error) {
     error.step = "main";
-    outputError(error);
+    log.error(error);
   }
 }
 

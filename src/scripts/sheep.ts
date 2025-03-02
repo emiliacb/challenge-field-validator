@@ -22,8 +22,8 @@ class SheepScript implements Script {
       input += chunk;
     }
 
-    log("Running sheep script");
-    log(
+    log.info("Running sheep script");
+    log.info(
       `Sheep says: ${
         input.length > 100 ? input.substring(0, 97) + "..." : input
       }`

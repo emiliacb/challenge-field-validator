@@ -1,3 +1,12 @@
+import { ValidationResults } from "../../core/validation/validation-results.js";
+
+/**
+ * Type representing the output of a script.
+ * Currently defined as an array of validation results, but can be extended
+ * to support other types of outputs in the future as needed.
+ */
+type ScriptOutput = ValidationResults[] | string;
+
 /**
  * Interface representing a runnable script with standardized input/output handling.
  * Scripts can be executed individually or composed together through piping operations.
@@ -25,5 +34,5 @@ export interface Script {
    */
   run: (
     getInput?: () => AsyncGenerator<string, void, unknown>
-  ) => Promise<string>;
+  ) => Promise<ScriptOutput>;
 }

@@ -8,10 +8,19 @@ import { ValidationResultData } from "../../lib/types/validation.js";
  * rules for different projects.
  */
 export class ValidationResults {
-  isValid: boolean = true;
-  errors: string[] = [];
-  warnings: string[] = [];
-  payload: Record<string, any> = {};
+  type: ValidationResultData["type"];
+  isValid: ValidationResultData["isValid"];
+  errors: ValidationResultData["errors"];
+  warnings: ValidationResultData["warnings"];
+  payload: ValidationResultData["payload"];
+
+  constructor({ type }: { type: ValidationResultData["type"] }) {
+    this.type = type;
+    this.isValid = true;
+    this.errors = [];
+    this.warnings = [];
+    this.payload = {};
+  }
 
   /**
    * Adds an error message to the validation results
@@ -42,24 +51,25 @@ export class ValidationResults {
   }
 
   /**
+   * Checks if there are any issues (errors or warnings)
+   * @returns True if there are any issues
+   */
+  hasIssues(): boolean {
+    return this.errors.length > 0 || this.warnings.length > 0;
+  }
+
+  /**
    * Returns the validation results as a plain object
    * This method is automatically called by JSON.stringify()
    * @returns The validation results data
    */
   toJSON(): ValidationResultData {
     return {
+      type: this.type,
       isValid: this.isValid,
       errors: this.errors,
       warnings: this.warnings,
       payload: this.payload,
     };
-  }
-
-  /**
-   * Checks if there are any issues (errors or warnings)
-   * @returns True if there are any issues
-   */
-  hasIssues(): boolean {
-    return this.errors.length > 0 || this.warnings.length > 0;
   }
 }

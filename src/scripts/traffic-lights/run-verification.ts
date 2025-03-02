@@ -1,10 +1,11 @@
-import { log, outputError } from "../../cli/output.js";
+import { log } from "../../cli/output.js";
 import { validateAnnotations } from "./validate-annotations.js";
+import { ValidationResults } from "../../core/validation/validation-results.js";
 
 const runVerification = async (
   getInputs: () => AsyncGenerator<string, void, unknown>
-) => {
-  log("Fetching tasks...");
+): Promise<ValidationResults[]> => {
+  log.info("Fetching tasks...");
 
   try {
     const iterator = getInputs();
@@ -25,24 +26,17 @@ const runVerification = async (
     }
 
     const validationResults = await Promise.all(
-      allTasks.map(async (task) => {
-        const result = await validateAnnotations(task);
-        return {
-          id: task.task_id,
-          name: task.task_id,
-          validation: result,
-        };
-      })
+      allTasks.map(async (task) => await validateAnnotations(task))
     );
 
     if (allTasks.length === 0) {
       throw new Error("No tasks found in the API response");
     }
 
-    return JSON.stringify(validationResults, null, 2);
+    return validationResults;
   } catch (error) {
     error.step = "traffic-lights:script";
-    outputError(error);
+    log.error(error);
     throw error;
   }
 };

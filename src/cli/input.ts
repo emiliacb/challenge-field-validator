@@ -7,14 +7,15 @@ import { SCRIPT_LIST } from "../scripts/index.js";
 
 const prompt = createPromptModule({ output: stderr });
 
-// TODO - Handle stdin file reading
 const getUserInput = async () => {
   program.option("-s, --script <type>", "Script to run");
+  program.option("-o, --output <type>", "Output format");
   program.parse();
 
   const option = program.opts();
 
   let scriptName = option.script;
+  let outputFormat = option.output;
 
   if (!scriptName) {
     const loadedScripts = await Promise.all(
@@ -38,7 +39,19 @@ const getUserInput = async () => {
     scriptName = answer.script;
   }
 
-  return { scriptName };
+  if (!outputFormat) {
+    const answer = await prompt([
+      {
+        type: "list",
+        name: "output",
+        message: "Select an output format:",
+        choices: ["json", "html"],
+      },
+    ]);
+    outputFormat = answer.output;
+  }
+
+  return { scriptName, outputFormat };
 };
 
 export { getUserInput };

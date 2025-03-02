@@ -1,4 +1,4 @@
 import { getUserInput } from "./input.js";
-import { log, output, outputError } from "./output.js";
+import { log, output } from "./output.js";
 
-export { getUserInput, log, output, outputError };
+export { getUserInput, log, output };

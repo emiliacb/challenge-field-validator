@@ -4,6 +4,12 @@ import chalk from "chalk";
 
 import { ErrorWithStep } from "../lib/interfaces/error.js";
 
+const colorMap = {
+  ERROR: chalk.red,
+  WARN: chalk.yellow,
+  INFO: chalk.gray,
+};
+
 /**
  * This module uses process.stdout and process.stderr streams directly instead of console.log
  * to ensure proper handling of Unix-style pipes and redirections. This approach allows:
@@ -28,25 +34,26 @@ const writeStream = (stream: NodeJS.WritableStream, message: string) => {
 const output = (message: string) => writeStream(stdout, message);
 
 /**
- * Operational logging for ancillary information. Writes to stderr with gray [LOG] prefix.
+ * Operational logging for informational messages. Writes to stderr with appropriate styling based on log level.
  * @param message - Diagnostic information about the CLI's execution process
+ * @param level - Log level: "INFO" (default), "WARN", or "ERROR"
  */
-const log = (message: string) => {
-  // TODO - Use a level system for logging.
-  const timestamp = new Date().toTimeString().split(" ")[0];
-  writeStream(stderr, chalk.gray(`[LOG - ${timestamp}] ${message}`));
+const log = {
+  info: (message: string) => {
+    const timestamp = new Date().toTimeString().split(" ")[0];
+    writeStream(stderr, colorMap.INFO(`[INFO - ${timestamp}] ${message}`));
+  },
+  warn: (message: string) => {
+    const timestamp = new Date().toTimeString().split(" ")[0];
+    writeStream(stderr, colorMap.WARN(`[WARN - ${timestamp}] ${message}`));
+  },
+  error: (error: ErrorWithStep) => {
+    const timestamp = new Date().toTimeString().split(" ")[0];
+    writeStream(
+      stderr,
+      chalk.red(`[ERROR - ${timestamp}] ${error.step}: ${error.message}`)
+    );
+  },
 };
 
-/**
- * Error reporting for user-facing issues. Writes to stderr in red.
- * @param message - Error description with potential recovery instructions
- */
-const outputError = (error: ErrorWithStep) => {
-  const timestamp = new Date().toTimeString().split(" ")[0];
-  writeStream(
-    stderr,
-    chalk.red(`[ERROR - ${timestamp}] ${error.step}: ${error.message}`)
-  );
-};
-
-export { output, outputError, log };
+export { output, log };

@@ -1,7 +1,7 @@
 import { imageSize } from "image-size";
 
-import Task from "../../lib/types/task.js";
-import { outputError } from "../../cli/output.js";
+import { RawTask } from "../../lib/types/task.js";
+import { log } from "../../cli/output.js";
 import { CONFIG } from "./config.js";
 import { ValidationResults } from "../../core/validation/validation-results.js";
 import { imageValidators } from "../../core/validation/image-validators.js";
@@ -24,14 +24,14 @@ const getImageDimensions = async (
   };
 };
 
-const validateAnnotations = async (task: Task) => {
+const validateAnnotations = async (task: RawTask) => {
   try {
     const imageUrl = task.params.attachment;
     const { width: imageWidth, height: imageHeight } = await getImageDimensions(
       imageUrl
     );
 
-    const taskResults = new ValidationResults();
+    const taskResults = new ValidationResults({ type: "task" });
 
     if (!task.response || !task.response.annotations) {
       taskResults.addError("No annotations found");
@@ -41,7 +41,7 @@ const validateAnnotations = async (task: Task) => {
     const annotations = task.response.annotations;
 
     for (const annotation of annotations) {
-      const results = new ValidationResults();
+      const results = new ValidationResults({ type: "annotation" });
 
       sharedValidators.validateAnnotationLabel({
         results,
@@ -87,7 +87,7 @@ const validateAnnotations = async (task: Task) => {
     return taskResults;
   } catch (error) {
     error.step = "traffic-lights:validate-annotations";
-    outputError(error);
+    log.error(error);
     throw error;
   }
 };

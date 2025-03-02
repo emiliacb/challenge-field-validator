@@ -1,4 +1,4 @@
-import { log, outputError } from "../../cli/output.js";
+import { log } from "../../cli/output.js";
 import { CONFIG } from "./config.js";
 
 async function* getInputsGenerator() {
@@ -21,7 +21,7 @@ async function* getInputsGenerator() {
     }
   } catch (error) {
     error.step = "traffic-lights:getInputsGenerator";
-    outputError(error);
+    log.error(error);
     throw error;
   }
 }
@@ -47,7 +47,7 @@ async function fetchPage(cursor = null) {
       queryParams.append("next_token", cursor);
     }
 
-    log(`Fetching from: ${URL}?${queryParams}`);
+    log.info(`Fetching from: ${URL}?${queryParams}`);
 
     const response = await fetch(`${URL}?${queryParams}`, {
       method: "GET",
@@ -65,7 +65,7 @@ async function fetchPage(cursor = null) {
     };
   } catch (error) {
     error.step = "traffic-lights:fetchPage";
-    outputError(error);
+    log.error(error);
     throw error;
   }
 }

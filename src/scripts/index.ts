@@ -1,4 +1,4 @@
-import { outputError } from "../cli/output.js";
+import { log } from "../cli/output.js";
 import { Script } from "../lib/interfaces/script.js";
 
 // We use dynamic imports for lazy loading to avoid bundling all scripts
@@ -23,7 +23,7 @@ const getScript = async (name: string): Promise<Script> => {
     return await scriptLoader();
   } catch (error) {
     error.step = "getScript";
-    outputError(error);
+    log.error(error);
     throw error;
   }
 };
