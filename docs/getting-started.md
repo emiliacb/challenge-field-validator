@@ -5,7 +5,7 @@
 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/challenge-field-validator.git
+git clone https://github.com/emiliacb/challenge-field-validator.git
 cd challenge-field-validator
 ```
 

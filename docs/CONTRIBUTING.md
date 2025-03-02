@@ -1,4 +1,6 @@
-## Contributing
+# Contributing
+
+## Gitflow:
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
@@ -8,6 +10,18 @@
 
 <br />
 
-Code of conduct:
+## Code of conduct:
 
 - Don't delete the sheep script. It's a joke.
+
+<br />
+
+## How to add a new script:
+
+1. Create a new folder in the `src/scripts` directory
+2. Create a new script class implementing the `Script` interface
+3. Add the script to the `src/scripts/index.ts` file
+4. Avoid changing the current interface `Script`, only extend it if needed.
+5. Avoid changing the validation results class, only extend it if needed.
+6. Try to reuse the existing validators and utils if possible.
+7. If you need to add new ones, prefer to implement them in a shared file in the `src/core/validation` directory unless they are very specific to a script.
