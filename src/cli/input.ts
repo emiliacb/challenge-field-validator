@@ -8,14 +8,18 @@ import { SCRIPT_LIST } from "../scripts/index.js";
 const prompt = createPromptModule({ output: stderr });
 
 const getUserInput = async () => {
-  program.option("-s, --script <type>", "Script to run");
-  program.option("-o, --output <type>", "Output format");
-  program.parse();
+  program
+    .name("pnpm start")
+    .option("-s, --script <type>", "Script to run")
+    .option("-o, --output <type>", "Output format")
+    .option("-p, --pipe", "To pipe the output instead of saving it to a file")
+    .parse();
 
   const option = program.opts();
 
   let scriptName = option.script;
   let outputFormat = option.output;
+  let pipe = option.pipe;
 
   if (!scriptName) {
     const loadedScripts = await Promise.all(
@@ -51,7 +55,7 @@ const getUserInput = async () => {
     outputFormat = answer.output;
   }
 
-  return { scriptName, outputFormat };
+  return { scriptName, outputFormat, pipe };
 };
 
 export { getUserInput };

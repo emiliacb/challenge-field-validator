@@ -16,20 +16,32 @@ Build the project
 pnpm build
 ```
 
-Run the cli
+Install the cli globally
 
 ```bash
-pnpm start
+npm install -g .
 ```
 
-Run the cli with a specific script
+Run the cli with the help flag to see the available options
 
 ```bash
-pnpm start -s <script-name>
+field-validator --help
+```
+
+Run directly to see the menu and select an script
+
+```bash
+field-validator
+```
+
+Run the cli with a specific script and output format
+
+```bash
+field-validator --script <script-name> --output <output-format>
 ```
 
 Run the cli and pipe the output to a file while running the script
 
 ```bash
-pnpm --silent start | tee output.txt
+field-validator --pipe > output.txt
 ```

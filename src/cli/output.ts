@@ -1,3 +1,4 @@
+import { createWriteStream } from "node:fs";
 import { stdout, stderr } from "node:process";
 
 import chalk from "chalk";
@@ -23,7 +24,7 @@ const colorMap = {
  * and work together through standard streams.
  */
 
-const writeStream = (stream: NodeJS.WritableStream, message: string) => {
+export const writeStream = (stream: NodeJS.WritableStream, message: string) => {
   stream.write(message + "\n");
 };
 
@@ -31,14 +32,23 @@ const writeStream = (stream: NodeJS.WritableStream, message: string) => {
  * Primary output for the CLI's final result. Writes plain text to stdout.
  * @param message - The final output to display, should be parseable by other tools
  */
-const output = (message: string) => writeStream(stdout, message);
+export const outputPipe = (message: string) => writeStream(stdout, message);
+
+/**
+ * Output for the CLI's final result. Writes plain text to a file.
+ * @param message - The final output to display, should be parseable by other tools
+ * @param fileName - The name of the file to write the output to
+ */
+export const outputFile = (message: string, fileName: string) => {
+  writeStream(createWriteStream(fileName), message);
+};
 
 /**
  * Operational logging for informational messages. Writes to stderr with appropriate styling based on log level.
  * @param message - Diagnostic information about the CLI's execution process
  * @param level - Log level: "INFO" (default), "WARN", or "ERROR"
  */
-const log = {
+export const log = {
   info: (message: string) => {
     const timestamp = new Date().toTimeString().split(" ")[0];
     writeStream(stderr, colorMap.INFO(`[INFO - ${timestamp}] ${message}`));
@@ -55,5 +65,3 @@ const log = {
     );
   },
 };
-
-export { output, log };
