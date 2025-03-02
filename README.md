@@ -2,6 +2,8 @@
 
 A command-line interface tool for validating annotations in built for the field engineering team.
 
+![Field Validator CLI Screenshot](./docs/screenshot.png)
+
 ## Documentation
 
 - [Getting Started](./docs/getting-started.md)

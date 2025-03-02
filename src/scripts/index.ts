@@ -8,8 +8,8 @@ import { Script } from "../lib/interfaces/script.js";
 // having to change the cli code.
 const SCRIPT_LIST: Record<string, () => Promise<Script>> = {
   sheep: () => import("./sheep.js").then((module) => module.default),
-  trafficLights: () =>
-    import("./traffic-lights/index.js").then((module) => module.default),
+  trafficSigns: () =>
+    import("./traffic-signs/index.js").then((module) => module.default),
 } as const;
 
 const getScript = async (name: string): Promise<Script> => {
