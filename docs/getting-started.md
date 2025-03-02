@@ -69,7 +69,7 @@ field-validator --pipe > output.txt
 ### Available Scripts
 
 - `traffic-lights`: Validates traffic light annotations with pagination support
-- `sheep`: Here be dragons! or sheep?
+- `sheep`: Here be dragons! or sheeps?
 
 ### Output Formats
 
