@@ -1,7 +1,7 @@
+import dotenv from "dotenv";
+
 import { outputError } from "./cli/output.js";
 import { runScript } from "./core/index.js";
-
-import dotenv from "dotenv";
 
 async function main() {
   try {
