@@ -1,4 +1,5 @@
 import { log, outputError } from "../../cli/output.js";
+import { CONFIG } from "./config.js";
 
 async function* getInputsGenerator() {
   try {
@@ -38,8 +39,8 @@ async function fetchPage(cursor = null) {
     };
 
     const queryParams = new URLSearchParams({
-      project: "Traffic Sign Detection",
-      limit: "5",
+      project: CONFIG.project,
+      limit: CONFIG.limit,
     });
 
     if (cursor) {

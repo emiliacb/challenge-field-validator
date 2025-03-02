@@ -17,7 +17,6 @@ const getUserInput = async () => {
   let scriptName = option.script;
 
   if (!scriptName) {
-    // Load all scripts to access their name and description
     const loadedScripts = await Promise.all(
       Object.entries(SCRIPT_LIST).map(async ([key, loader]) => {
         const script = await loader();
