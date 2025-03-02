@@ -1,5 +1,5 @@
-import { getUserInput, output, outputError } from "../lib/cli/index.ts";
-import { getScript } from "../scripts/index.ts";
+import { getUserInput, output, outputError } from "../cli/index.js";
+import { getScript } from "../scripts/index.js";
 
 async function runScript() {
   try {

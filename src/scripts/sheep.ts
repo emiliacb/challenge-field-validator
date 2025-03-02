@@ -1,4 +1,4 @@
-import { log } from "../lib/cli/index.ts";
+import { log } from "../cli/index.js";
 import { Script } from "../lib/interfaces/script.js";
 
 // Just a silly script to test the CLI.

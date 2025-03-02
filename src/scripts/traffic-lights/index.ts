@@ -1,6 +1,6 @@
-import { Script } from "../../lib/interfaces/script.ts";
-import { runVerification } from "./run-verification.ts";
-import { getInputsGenerator } from "./get-inputs.ts";
+import { Script } from "../../lib/interfaces/script.js";
+import { runVerification } from "./run-verification.js";
+import { getInputsGenerator } from "./get-inputs.js";
 
 class TrafficLightsScript implements Script {
   name: string = "traffic-lights";

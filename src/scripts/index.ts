@@ -1,5 +1,5 @@
-import { outputError } from "../lib/cli/output.ts";
-import { Script } from "../lib/interfaces/script.ts";
+import { outputError } from "../cli/output.js";
+import { Script } from "../lib/interfaces/script.js";
 
 // We use dynamic imports for lazy loading to avoid bundling all scripts
 // in the same chunk. This pattern helps reduce initia load time and
@@ -7,9 +7,9 @@ import { Script } from "../lib/interfaces/script.ts";
 // We could move this to a separate file or multiple files in the future without
 // having to change the cli code.
 const SCRIPT_LIST: Record<string, () => Promise<Script>> = {
-  sheep: () => import("./sheep.ts").then((module) => module.default),
+  sheep: () => import("./sheep.js").then((module) => module.default),
   trafficLights: () =>
-    import("./traffic-lights/index.ts").then((module) => module.default),
+    import("./traffic-lights/index.js").then((module) => module.default),
 } as const;
 
 const getScript = async (name: string): Promise<Script> => {

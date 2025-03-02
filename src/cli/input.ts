@@ -3,7 +3,7 @@ import { stderr } from "node:process";
 import { program } from "commander";
 import { createPromptModule } from "inquirer";
 
-import { SCRIPT_LIST } from "../../scripts/index.ts";
+import { SCRIPT_LIST } from "../scripts/index.js";
 
 const prompt = createPromptModule({ output: stderr });
 

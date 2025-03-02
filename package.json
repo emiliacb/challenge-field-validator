@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "tsx src/index.ts",
-    "build": "tsc --outDir bin",
+    "build": "tsc --diagnostics",
     "start": "node bin/index.js"
   },
   "author": "Emilia Cabral",

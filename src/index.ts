@@ -1,5 +1,5 @@
-import { outputError } from "./lib/cli/output.ts";
-import { runScript } from "./core/index.ts";
+import { outputError } from "./cli/output.js";
+import { runScript } from "./core/index.js";
 
 import dotenv from "dotenv";
 
