@@ -1,3 +1,4 @@
+import { ValidationResultData } from "../../lib/types/validation.js";
 /**
  * Class for validation results used across different scripts.
  * This class helps maintain a consistent format for validation outputs
@@ -32,7 +33,7 @@ export class ValidationResults {
   }
 
   /**
-   * Adds a payload to the validation results
+   * Adds or updates a value in the payload
    * @param payload The payload to add
    */
   addPayload(payload: Record<string, any>): this {
@@ -41,20 +42,17 @@ export class ValidationResults {
   }
 
   /**
-   * Returns the validation results as a JSON string
-   * @returns The validation results as a JSON string
+   * Returns the validation results as a plain object
+   * This method is automatically called by JSON.stringify()
+   * @returns The validation results data
    */
-  toJSON(): string {
-    return JSON.stringify(
-      {
-        isValid: this.isValid,
-        errors: this.errors,
-        warnings: this.warnings,
-        payload: this.payload,
-      },
-      null,
-      2
-    );
+  toJSON(): ValidationResultData {
+    return {
+      isValid: this.isValid,
+      errors: this.errors,
+      warnings: this.warnings,
+      payload: this.payload,
+    };
   }
 
   /**
