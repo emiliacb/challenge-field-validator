@@ -31,5 +31,5 @@ pnpm start -s <script-name>
 Run the cli and pipe the output to a file while running the script
 
 ```bash
-pnpm start | sed '1,3d' | tee output.txt
+pnpm --silent start | tee output.txt
 ```

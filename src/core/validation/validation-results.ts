@@ -1,3 +1,4 @@
+import { log } from "../../cli/output.js";
 import { ValidationResultData } from "../../lib/types/validation.js";
 /**
  * Class for validation results used across different scripts.
@@ -8,13 +9,21 @@ import { ValidationResultData } from "../../lib/types/validation.js";
  * rules for different projects.
  */
 export class ValidationResults {
+  id: string;
   type: ValidationResultData["type"];
   isValid: ValidationResultData["isValid"];
   errors: ValidationResultData["errors"];
   warnings: ValidationResultData["warnings"];
   payload: ValidationResultData["payload"];
 
-  constructor({ type }: { type: ValidationResultData["type"] }) {
+  constructor({
+    id,
+    type,
+  }: {
+    id: string;
+    type: ValidationResultData["type"];
+  }) {
+    this.id = id;
     this.type = type;
     this.isValid = true;
     this.errors = [];
@@ -55,7 +64,21 @@ export class ValidationResults {
    * @returns True if there are any issues
    */
   hasIssues(): boolean {
-    return this.errors.length > 0 || this.warnings.length > 0;
+    if (this.type === "annotation") {
+      return this.errors.length > 0 || this.warnings.length > 0;
+    }
+
+    if (this.type === "task") {
+      const annotations = Object.values(this.payload);
+
+      log.info(JSON.stringify(this.payload, null, 2));
+
+      return (
+        this.errors.length > 0 ||
+        this.warnings.length > 0 ||
+        annotations.some((annotation) => annotation?.hasIssues())
+      );
+    }
   }
 
   /**
@@ -65,6 +88,7 @@ export class ValidationResults {
    */
   toJSON(): ValidationResultData {
     return {
+      id: this.id,
       type: this.type,
       isValid: this.isValid,
       errors: this.errors,

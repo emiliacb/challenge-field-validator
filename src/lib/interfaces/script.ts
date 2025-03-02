@@ -5,7 +5,7 @@ import { ValidationResults } from "../../core/validation/validation-results.js";
  * Currently defined as an array of validation results, but can be extended
  * to support other types of outputs in the future as needed.
  */
-type ScriptOutput = ValidationResults[] | string;
+export type ScriptOutput = ValidationResults[] | string;
 
 /**
  * Interface representing a runnable script with standardized input/output handling.

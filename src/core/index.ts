@@ -1,6 +1,6 @@
 import { getUserInput, log, output } from "../cli/index.js";
 import { getScript } from "../scripts/index.js";
-import { isJsonParseable } from "../lib/utils/isJsonParseable.js";
+import { parseResultHtml } from "../lib/utils/parse-html-result.js";
 
 async function runScript() {
   try {
@@ -18,7 +18,7 @@ async function runScript() {
       case "json":
         return output(JSON.stringify(result, null, 2));
       case "html":
-        return output(JSON.stringify(result));
+        return output(parseResultHtml(result));
       default:
         return output(JSON.stringify(result, null, 2));
     }

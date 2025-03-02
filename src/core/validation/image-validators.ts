@@ -51,4 +51,33 @@ export const imageValidators = {
       results.addError(`Annotation is outside the image boundaries`);
     }
   },
+
+  validateBackgroundColor: ({
+    results,
+    annotation,
+    reference,
+  }: ImageValidationProps) => {
+    const backgroundColorChoices =
+      reference.params?.annotation_attributes?.background_color?.choices;
+    if (
+      backgroundColorChoices &&
+      !backgroundColorChoices.includes(annotation.attributes?.background_color)
+    ) {
+      results.addError(
+        `Invalid background color: ${
+          annotation.attributes?.background_color
+        }. Must be one of: ${backgroundColorChoices.join(", ")}`
+      );
+    }
+
+    // Special validation for non_visible_face label
+    if (
+      annotation.label === "non_visible_face" &&
+      annotation.attributes?.background_color !== "not_applicable"
+    ) {
+      results.addError(
+        'Background color must be "not_applicable" for non_visible_face label'
+      );
+    }
+  },
 };

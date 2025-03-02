@@ -7,16 +7,6 @@ type SharedValidationProps = {
 };
 
 export const sharedValidators = {
-  validateAnnotationLabel: ({
-    results,
-    annotation,
-    reference,
-  }: SharedValidationProps) => {
-    if (!reference.includes(annotation.label)) {
-      results.addError(`Invalid label: ${annotation.label}`);
-    }
-  },
-
   validateObjectToAnnotate: ({
     results,
     annotation,
@@ -66,35 +56,6 @@ export const sharedValidators = {
         `Invalid truncation value: ${
           annotation.attributes?.truncation
         }. Must be one of: ${truncationChoices.join(", ")}`
-      );
-    }
-  },
-
-  validateBackgroundColor: ({
-    results,
-    annotation,
-    reference,
-  }: SharedValidationProps) => {
-    const backgroundColorChoices =
-      reference.params?.annotation_attributes?.background_color?.choices;
-    if (
-      backgroundColorChoices &&
-      !backgroundColorChoices.includes(annotation.attributes?.background_color)
-    ) {
-      results.addError(
-        `Invalid background color: ${
-          annotation.attributes?.background_color
-        }. Must be one of: ${backgroundColorChoices.join(", ")}`
-      );
-    }
-
-    // Special validation for non_visible_face label
-    if (
-      annotation.label === "non_visible_face" &&
-      annotation.attributes?.background_color !== "not_applicable"
-    ) {
-      results.addError(
-        'Background color must be "not_applicable" for non_visible_face label'
       );
     }
   },
