@@ -6,14 +6,12 @@ const getTaskUrl = (taskId: string) =>
   `https://dashboard.scale.com/audit?taskId=${taskId}`;
 
 const templateRow = (
-  statusColor: string,
   statusText: string,
-  result: ValidationResults
+  result: ValidationResults,
+  isValid: boolean
 ) => `
   <div class="validation-row">
-    <div class="status ${
-      statusColor === "green" ? "status--valid" : "status--invalid"
-    }">
+    <div class="status ${isValid ? "status--valid" : "status--invalid"}">
       ${statusText}
     </div>
     <a href="${getTaskUrl(
@@ -26,8 +24,8 @@ const templateRow = (
 
 export function validationRow(result: ValidationResults): string {
   const { isValid } = result;
-  const statusColor = isValid ? "green" : "red";
+
   const statusText = isValid ? "✓ Valid" : "✗ Invalid";
 
-  return templateRow(statusColor, statusText, result);
+  return templateRow(statusText, result, isValid);
 }
