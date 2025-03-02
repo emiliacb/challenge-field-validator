@@ -9,12 +9,27 @@ const templateRows = (rows: string) => `
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Validation Results</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <style>
+      body {
+        font-family: "Montserrat", sans-serif;
+        padding: 20px;
+        background-color:rgb(180, 180, 180);
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
       .validation-row {
+        background-color:rgb(230, 230, 230);
         border: 1px solid #ccc;
         margin: 10px;
         padding: 15px;
         border-radius: 4px;
+        max-width: 800px;
+        margin: 0 auto;
       }
       .status {
         font-weight: bold;
@@ -25,14 +40,14 @@ const templateRows = (rows: string) => `
       .annotation {
         margin: 10px 0;
         padding: 10px;
-        border-left: 3px solid #eee;
+        border-left: 3px solidrgb(180, 180, 180);
       }
       .error-message {
-        color: red;
+        color: rgb(169, 14, 9);
         margin-bottom: 10px;
       }
       .warning-message {
-        color: orange;
+        color:rgb(169, 134, 9);
         margin-bottom: 10px;
       }
     </style>

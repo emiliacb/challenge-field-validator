@@ -12,6 +12,7 @@ async function runScript() {
       log.warn(
         `The selected script can't return a ${outputFormat}, becasue it's a sheep`
       );
+      return output(result as string);
     }
 
     switch (outputFormat) {
