@@ -1,47 +1,37 @@
-# challenge-field-validator
+# Field Validator CLI
 
-Scale AI Challenge
+A command-line interface tool for validating annotations in built for the field engineering team.
 
-## Usage
+## Documentation
 
-Install dependencies
+- [Getting Started](./docs/GETTING_STARTED.md)
+- [Contributing](./docs/CONTRIBUTING.md)
+- [Challenge](./docs/CHALLENGE.md)
 
-```bash
-pnpm install
-```
+## Features
 
-Build the project
+- Validate annotations against predefined modular rules
+- Multiple output formats (JSON, HTML)
+- Interactive CLI menu for script selection
+- Support for output piped operations
+- Pagination support for large datasets based on generator functions
+- Highly scalable and modular design
 
-```bash
-pnpm build
-```
+### TODO
 
-Install the cli globally
+- Use the generator functions approach to enable piped inputs too. For example, `cat data.json | field-validator --script trafficLights` where the cat command is used to read the data.json file and pipe it to the field-validator command to validate the annotations.
+- Add unit tests. In this case is crucial to mantain the repo due to its modular nature.
+- Show the images with the annotations in the HTML report.
+- Implement react or vue for the report to make it more scalable.
+- In a real scenario we could register this package in a private npm registry.
 
-```bash
-npm install -g .
-```
+## Project Structure
 
-Run the cli with the help flag to see the available options
-
-```bash
-field-validator --help
-```
-
-Run directly to see the menu and select an script
-
-```bash
-field-validator
-```
-
-Run the cli with a specific script and output format
-
-```bash
-field-validator --script <script-name> --output <output-format>
-```
-
-Run the cli and pipe the output to a file while running the script
-
-```bash
-field-validator --pipe > output.txt
-```
+- `/bin`: Executable files
+- `/docs`: Documentation
+- `/results`: Results directory
+- `/src`: Source code
+  - `/cli`: CLI-related functionality
+  - `/core`: Core validation logic shared by all scripts
+  - `/lib`: Shared utilities and interfaces
+  - `/scripts`: Individual validation scripts
