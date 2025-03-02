@@ -31,11 +31,11 @@ const validateAnnotations = async (task: Task) => {
       imageUrl
     );
 
-    const allAnnotationResults = new ValidationResults();
+    const taskResults = new ValidationResults();
 
     if (!task.response || !task.response.annotations) {
-      allAnnotationResults.addError("No annotations found");
-      return allAnnotationResults;
+      taskResults.addError("No annotations found");
+      return taskResults;
     }
 
     const annotations = task.response.annotations;
@@ -72,7 +72,8 @@ const validateAnnotations = async (task: Task) => {
         },
       });
 
-      allAnnotationResults.addPayload({
+      // Add the annotation results into the task results
+      taskResults.addPayload({
         image: {
           url: imageUrl,
           width: imageWidth,
@@ -83,7 +84,7 @@ const validateAnnotations = async (task: Task) => {
       });
     }
 
-    return allAnnotationResults;
+    return taskResults;
   } catch (error) {
     error.step = "traffic-lights:validate-annotations";
     outputError(error);
