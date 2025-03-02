@@ -24,7 +24,6 @@ const runVerification = async (
       }
     }
 
-    // Validate all tasks in parallel
     const validationResults = await Promise.all(
       allTasks.map(async (task) => {
         const result = await validateAnnotations(task);
