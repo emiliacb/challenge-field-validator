@@ -10,7 +10,7 @@ async function runScript() {
 
     if (scriptName === "sheep") {
       log.warn(
-        `The selected script can't return a ${outputFormat}, becasue it's a sheep`
+        `The selected script can't return a ${outputFormat}, because sheeps don't know how to do that.`
       );
       return outputPipe(result as string);
     }

@@ -12,7 +12,11 @@ const getUserInput = async () => {
     .name("pnpm start")
     .option("-s, --script <type>", "Script to run")
     .option("-o, --output <type>", "Output format")
-    .option("-p, --pipe", "To pipe the output instead of saving it to a file")
+    .option(
+      "-p, --pipe",
+      "To pipe the output instead of saving it to a file",
+      false
+    )
     .parse();
 
   const option = program.opts();

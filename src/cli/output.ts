@@ -51,6 +51,11 @@ export const outputFile = (message: string, fileName: string) => {
   // Save file in the results directory
   const filePath = path.join(resultsDir, fileName);
   writeStream(createWriteStream(filePath), message);
+
+  // Log success message
+  log.info(`File saved successfully: ${filePath}`);
+
+  return filePath;
 };
 
 /**

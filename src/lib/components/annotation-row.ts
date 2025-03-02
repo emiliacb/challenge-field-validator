@@ -16,7 +16,7 @@ export function annotationRow(task: ValidationResults): string {
           </div>
         `;
       }
-      return ""; // Explicit return for when hasIssues() is false
+      return "";
     })
     .join("");
 }
