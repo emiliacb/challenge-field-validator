@@ -15,29 +15,16 @@ async function runScript() {
       return outputPipe(result as string);
     }
 
-    // TODO: refactor this switch to be more readable
+    const output = pipe ? outputPipe : outputFile;
+    const fileName = `${scriptName}-${Date.now()}.${outputFormat}`;
+
     switch (outputFormat) {
       case "json":
-        if (pipe) {
-          return outputPipe(JSON.stringify(result, null, 2));
-        }
-        return outputFile(
-          JSON.stringify(result, null, 2),
-          `result-${Date.now()}.json`
-        );
+        return output(JSON.stringify(result, null, 2), fileName);
       case "html":
-        if (pipe) {
-          return outputPipe(parseResultHtml(result));
-        }
-        return outputFile(parseResultHtml(result), `result-${Date.now()}.html`);
+        return output(parseResultHtml(result), fileName);
       default:
-        if (pipe) {
-          return outputPipe(JSON.stringify(result, null, 2));
-        }
-        return outputFile(
-          JSON.stringify(result, null, 2),
-          `result-${Date.now()}.json`
-        );
+        return output(JSON.stringify(result, null, 2), fileName);
     }
   } catch (error) {
     error.step = "runScript";

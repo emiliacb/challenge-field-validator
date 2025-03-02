@@ -132,3 +132,4 @@ dist
 # build
 bin/
 output.txt
+results/

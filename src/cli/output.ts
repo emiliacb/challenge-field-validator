@@ -1,5 +1,7 @@
 import { createWriteStream } from "node:fs";
 import { stdout, stderr } from "node:process";
+import path from "node:path";
+import fs from "node:fs";
 
 import chalk from "chalk";
 
@@ -40,7 +42,15 @@ export const outputPipe = (message: string) => writeStream(stdout, message);
  * @param fileName - The name of the file to write the output to
  */
 export const outputFile = (message: string, fileName: string) => {
-  writeStream(createWriteStream(fileName), message);
+  // Create results directory if it doesn't exist
+  const resultsDir = path.join(process.cwd(), "results");
+  if (!fs.existsSync(resultsDir)) {
+    fs.mkdirSync(resultsDir, { recursive: true });
+  }
+
+  // Save file in the results directory
+  const filePath = path.join(resultsDir, fileName);
+  writeStream(createWriteStream(filePath), message);
 };
 
 /**
