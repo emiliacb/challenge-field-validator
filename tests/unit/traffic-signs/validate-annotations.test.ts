@@ -1,10 +1,33 @@
 import fs from "node:fs";
 import { describe, it, after } from "node:test";
-import assert from "node:assert/strict";
+import assert from "node:assert";
+
 import nock from "nock";
 
 import { fetchPage } from "../../../src/scripts/traffic-signs/get-inputs.js";
 import { validateAnnotations } from "../../../src/scripts/traffic-signs/validate-annotations.js";
+
+const EXPECTED_ANNOTATIONS = [
+  {
+    errors: [
+      "Invalid label: policy_sign. Must be one of: sheep_face",
+      "Invalid occlusion value: 10%. Must be one of: 12%",
+      "Invalid truncation value: 10%. Must be one of: 15%",
+      "Invalid background color: blue. Must be one of: purple",
+      "Annotation is larger than the image",
+      "Annotation is outside the image boundaries",
+    ],
+    warnings: [],
+  },
+  {
+    errors: ["Annotation is less than 2px in size"],
+    warnings: [],
+  },
+  {
+    errors: [],
+    warnings: ["Annotation is less than 10px in size"],
+  },
+];
 
 describe("Traffic Signs - Validate Annotations", async () => {
   describe("validateAnnotations", async () => {
@@ -29,34 +52,12 @@ describe("Traffic Signs - Validate Annotations", async () => {
         warnings: annotation.results.warnings,
       }));
 
-      const expectedAnnotations = [
-        {
-          errors: [
-            "Invalid label: policy_sign. Must be one of: sheep_face",
-            "Invalid occlusion value: 10%. Must be one of: 12%",
-            "Invalid truncation value: 10%. Must be one of: 15%",
-            "Invalid background color: blue. Must be one of: purple",
-            "Annotation is larger than the image",
-            "Annotation is outside the image boundaries",
-          ],
-          warnings: [],
-        },
-        {
-          errors: ["Annotation is less than 2px in size"],
-          warnings: [],
-        },
-        {
-          errors: [],
-          warnings: ["Annotation is less than 10px in size"],
-        },
-      ];
-
       assert.ok(
-        annotations.length === expectedAnnotations.length,
+        annotations.length === EXPECTED_ANNOTATIONS.length,
         "Expected number of annotations to match expected results"
       );
 
-      expectedAnnotations.forEach((expected, index) => {
+      EXPECTED_ANNOTATIONS.forEach((expected, index) => {
         assert.deepEqual(
           annotations[index],
           expected,

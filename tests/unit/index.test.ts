@@ -1,10 +1,9 @@
-import dotenv from "dotenv";
-import { describe, it, before } from "node:test";
-import assert from "node:assert/strict";
+import { describe, it } from "node:test";
+import assert from "node:assert";
 
 describe("Environment Variables", () => {
   it("SCALE_LIVE_API_KEY should be defined and in correct format", () => {
-    const apiKey = process.env.SCALE_LIVE_API_KEY;
+    const apiKey = process.env.SCALE_LIVE_API_KEY!;
     assert.ok(apiKey, "SCALE_LIVE_API_KEY should be defined");
     assert.ok(
       apiKey?.match(/^live_[a-f0-9]{32}$/),
@@ -13,7 +12,7 @@ describe("Environment Variables", () => {
   });
 
   it("SCALE_BASE_URL should be defined and be a valid URL", () => {
-    const baseUrl = process.env.SCALE_BASE_URL;
+    const baseUrl = process.env.SCALE_BASE_URL!;
     assert.ok(baseUrl, "SCALE_BASE_URL should be defined");
     assert.ok(
       baseUrl?.match(/^https?:\/\/[^\s/$.?#].[^\s]*$/),

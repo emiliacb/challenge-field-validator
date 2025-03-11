@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import { describe, it, after } from "node:test";
-import assert from "node:assert/strict";
+import assert from "node:assert";
+
 import nock from "nock";
-import dotenv from "dotenv";
 
 import { fetchPage } from "../../../src/scripts/traffic-signs/get-inputs.js";
 

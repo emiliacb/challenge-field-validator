@@ -25,3 +25,33 @@
 5. Avoid changing the validation results class, only extend it if needed.
 6. Try to reuse the existing validators and utils if possible.
 7. If you need to add new ones, prefer to implement them in a shared file in the `src/core/validation` directory unless they are very specific to a script.
+
+<br />
+
+## Testing Your Changes
+
+For development iterations, you can use hot reload during development:
+
+```bash
+pnpm dev
+```
+
+For unit tests, you can run:
+
+```bash
+npm run test
+```
+
+After modifying or adding new scripts, reinstall the CLI globally to ensure your changes are applied:
+
+```bash
+npm uninstall -g . && npm install -g .
+```
+
+or
+
+```bash
+npm uninstall -g challenge-field-validator && npm install -g .
+```
+
+This ensures the global installation uses your latest implementation.
