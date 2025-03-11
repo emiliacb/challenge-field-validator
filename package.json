@@ -15,7 +15,7 @@
   },
   "author": "Emilia Cabral",
   "engines": {
-    "node": "22"
+    "node": "22.x"
   },
   "devDependencies": {
     "@types/inquirer": "^9.0.7",

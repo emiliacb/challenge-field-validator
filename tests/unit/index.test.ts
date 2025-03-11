@@ -13,7 +13,10 @@ describe("Environment Variables", () => {
 
   it("SCALE_BASE_URL should be defined and be a valid URL", () => {
     const baseUrl = process.env.SCALE_BASE_URL!;
-    assert.ok(baseUrl, "SCALE_BASE_URL should be defined");
+    assert.ok(
+      baseUrl,
+      "SCALE_BASE_URL should be defined and in correct format"
+    );
     assert.ok(
       baseUrl?.match(/^https?:\/\/[^\s/$.?#].[^\s]*$/),
       "SCALE_BASE_URL should be a valid URL"

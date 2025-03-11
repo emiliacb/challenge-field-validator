@@ -31,7 +31,7 @@ const EXPECTED_ANNOTATIONS = [
 
 describe("Traffic Signs - Validate Annotations", async () => {
   describe("validateAnnotations", async () => {
-    it("should validate a valid annotation", async () => {
+    it("should validate annotations correctly", async () => {
       nock(process.env.SCALE_BASE_URL!)
         .get("/v1/tasks")
         .query(true)

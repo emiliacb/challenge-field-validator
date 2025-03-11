@@ -8,7 +8,7 @@ import { fetchPage } from "../../../src/scripts/traffic-signs/get-inputs.js";
 
 describe("Traffic Signs - Get Inputs", async () => {
   describe("getInputsGenerator", async () => {
-    it("should fetch tasks from Scale API", async () => {
+    it("should fetch tasks correctly", async () => {
       nock(process.env.SCALE_BASE_URL!)
         .get("/v1/tasks")
         .query(true)
