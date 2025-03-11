@@ -28,6 +28,7 @@ A command-line interface tool was built for validating annotations for the field
   - `/core`: Core validation logic shared by all scripts
   - `/lib`: Shared utilities and interfaces
   - `/scripts`: Individual validation scripts
+- `/tests`: Unit tests and mocks
 - `/docs`: Documentation
 - `/bin`: Executable files (not tracked)
 - `/results`: Results output directory (not tracked)
