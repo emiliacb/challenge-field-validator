@@ -1,7 +1,7 @@
 import { log } from "../../cli/output.js";
 import { CONFIG } from "./config.js";
 
-async function* getInputsGenerator() {
+export async function* getInputsGenerator() {
   try {
     let nextCursor = null;
     let hasMorePages = true;
@@ -26,7 +26,7 @@ async function* getInputsGenerator() {
   }
 }
 
-async function fetchPage(cursor = null) {
+export async function fetchPage(cursor = null) {
   try {
     const SCALE_BASE_URL = process.env.SCALE_BASE_URL;
     const URL = `${SCALE_BASE_URL}/v1/tasks`;
@@ -69,5 +69,3 @@ async function fetchPage(cursor = null) {
     throw error;
   }
 }
-
-export { getInputsGenerator };
