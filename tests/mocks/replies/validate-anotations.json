@@ -1,0 +1,107 @@
+{
+  "docs": [
+    {
+      "task_id": "5f127f6f26831d0010e985e5",
+      "created_at": "2020-07-18T04:49:51.129Z",
+      "completed_at": "2020-07-18T05:03:26.917Z",
+      "type": "annotation",
+      "status": "completed",
+      "instruction": "Draw a tight box around each object.",
+      "params": {
+        "attachment": "https://observesign.s3-us-west-2.amazonaws.com/traffic_sign_1.jpg",
+        "attachment_type": "image",
+        "objects_to_annotate": ["sheep_face"],
+        "with_labels": true,
+        "min_width": 0,
+        "min_height": 0,
+        "examples": [],
+        "annotation_attributes": {
+          "occlusion": {
+            "description": "What percent of the object is occluded?",
+            "choices": ["12%"]
+          },
+          "truncation": {
+            "description": "What percent of the object is truncated?",
+            "choices": ["15%"]
+          },
+          "background_color": {
+            "description": "What color is the background of the sign?",
+            "choices": ["purple"]
+          }
+        }
+      },
+      "is_test": false,
+      "urgency": "standard",
+      "metadata": {},
+      "processed_attachments": [],
+      "project": "Traffic Sign Detection",
+      "priority": 0,
+      "postProcessingResults": {},
+      "customer_review_status": "accepted",
+      "customer_review_comments": ["", "", "", ""],
+      "callback_url": "https://example.com/callback",
+      "response": {
+        "annotations": [
+          {
+            "label": "policy_sign",
+            "attributes": {
+              "occlusion": "10%",
+              "truncation": "10%",
+              "background_color": "blue"
+            },
+            "uuid": "b3c4575f-0332-4a90-8983-5145a024baf7",
+            "width": 10000,
+            "height": 10000,
+            "geometry": "box",
+            "left": 20000,
+            "top": 20000
+          },
+          {
+            "label": "sheep_face",
+            "attributes": {
+              "occlusion": "12%",
+              "truncation": "15%",
+              "background_color": "purple"
+            },
+            "uuid": "7ccbe8d2-0e6e-4d51-a732-36bb7c6852b2",
+            "width": 1,
+            "height": 1,
+            "geometry": "box",
+            "left": 2,
+            "top": 2
+          },
+          {
+            "label": "sheep_face",
+            "attributes": {
+              "occlusion": "12%",
+              "truncation": "15%",
+              "background_color": "purple"
+            },
+            "uuid": "6218b547-a832-4147-894a-6a0cef1daf5d",
+            "width": 8,
+            "height": 8,
+            "geometry": "box",
+            "left": 2,
+            "top": 2
+          }
+        ],
+        "global_attributes": {},
+        "is_customer_fix": false
+      },
+      "customer_reviewed_by": "fieldengineering+observesign@scale.com",
+      "customer_audit_time_secs": 91.088,
+      "customer_audit_active_time_secs": 85.087,
+      "customer_audited_at": "2021-10-13T05:59:06.682Z",
+      "audits": [],
+      "projectId": "5f124e5671c7b700170a16fb",
+      "updated_at": "2025-03-10T06:40:45.881Z",
+      "work_started": true,
+      "isProcessed": false
+    }
+  ],
+  "total": 10,
+  "offset": 0,
+  "limit": 5,
+  "has_more": true,
+  "next_token": "eyJ0YXNrX2lkIjoiNWYxMjdmNjk5NzQwYjgwMDE3ZjliMTcwIiwiY3JlYXRlZF9hdCI6IjIwMjAtMDctMThUMDQ6NDk6NDUuNzMxWiJ9"
+}
