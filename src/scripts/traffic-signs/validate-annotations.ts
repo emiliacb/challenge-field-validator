@@ -33,25 +33,25 @@ const validateAnnotations = async (task: RawTask) => {
       sharedValidators.validateObjectToAnnotate({
         results,
         annotation,
-        reference: task.params.objects_to_annotate,
+        reference: task,
       });
 
       sharedValidators.validateOcclusion({
         results,
         annotation,
-        reference: task.params.annotation_attributes.occlusion.choices,
+        reference: task,
       });
 
       sharedValidators.validateTruncation({
         results,
         annotation,
-        reference: task.params.annotation_attributes.truncation.choices,
+        reference: task,
       });
 
       imageValidators.validateBackgroundColor({
         results,
         annotation,
-        reference: task.params.annotation_attributes.background_color.choices,
+        reference: task,
       });
 
       imageValidators.validateLabelImageSize({

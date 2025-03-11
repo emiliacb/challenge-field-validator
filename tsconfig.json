@@ -11,5 +11,6 @@
     "emitDeclarationOnly": false,
     "declaration": true
   },
-  "include": ["src"]
+  "include": ["src", "tests"],
+  "exclude": ["node_modules"]
 }

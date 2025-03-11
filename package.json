@@ -10,12 +10,17 @@
   "scripts": {
     "dev": "tsx src/index.ts",
     "build": "tsc --diagnostics",
-    "start": "node bin/index.js"
+    "start": "node bin/index.js",
+    "test": "tsx --import ./tests/unit/setup.mjs --test \"tests/**/*.test.ts\""
   },
   "author": "Emilia Cabral",
+  "engines": {
+    "node": "22.x"
+  },
   "devDependencies": {
     "@types/inquirer": "^9.0.7",
     "@types/node": "^20.11.0",
+    "nock": "^14.0.1",
     "tsx": "^4.19.3",
     "typescript": "5.7.2"
   },

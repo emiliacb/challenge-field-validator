@@ -78,17 +78,7 @@ field-validator --pipe > output.txt
 
 ### Development
 
-Run in development mode with hot reload:
-
-```bash
-pnpm dev
-```
-
-Reinstall the CLI globally after changes:
-
-```bash
-npm uninstall -g . && npm install -g .
-```
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for more information.
 
 ## Piped Output Operations
 
