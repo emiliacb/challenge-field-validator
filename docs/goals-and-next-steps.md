@@ -26,7 +26,7 @@
 
 - Retry if a request fails.
 - Use the generator functions approach to enable piped inputs too.
-- Add unit tests. In this case is crucial to mantain the repo due to its modular nature.
+- ✅ Add unit tests. In this case is crucial to mantain the repo due to its modular nature.
 - Show the images with the annotations in the HTML report.
 - Implement react or vue for the report to make it more scalable.
 - In a real scenario we could register this package in a private npm registry.
