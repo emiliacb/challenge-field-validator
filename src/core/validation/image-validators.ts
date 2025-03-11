@@ -10,8 +10,8 @@ export const imageValidators = {
   validateLabelImageSize: ({ results, annotation }: ImageValidationProps) => {
     const { width, height } = annotation;
 
-    if (width < 1 || height < 1) {
-      results.addError(`Annotation is less than 1px in size`);
+    if (width < 2 || height < 2) {
+      results.addError(`Annotation is less than 2px in size`);
       return;
     }
 
