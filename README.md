@@ -22,7 +22,7 @@ A command-line interface tool built for validating annotations for the field eng
 - Highly scalable and modular design
 
 ## TODO
-- [ ] Add more visual validations for occlusion, truncation and background color.
+- [ ] Add more visual validations for occlusion, truncation and background color. Current validations are just basic examples.
 
 ## Project Structure
 
