@@ -20,6 +20,7 @@
 
 **Quality Checks**
 
+- Implement more complex visual validations like occlusion, truncation and background color. 
 - We could implement a small LLM like Moondream to check the quality of the task responses. Being able to run locally with Ollama.
 
 **Technical**
