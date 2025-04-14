@@ -21,6 +21,9 @@ A command-line interface tool was built for validating annotations for the field
 - Pagination support for large datasets based on generator functions
 - Highly scalable and modular design
 
+## TODO
+- [ ] Add more visual validations for occlusion, truncation and background color.
+
 ## Project Structure
 
 - `/src`: Source code
